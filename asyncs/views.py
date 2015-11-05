@@ -9,14 +9,13 @@ from django.core.urlresolvers import reverse
 
 from .helpers import encoder_fabric
 
-"""
 from pushme.mq import get_sender
+
 
 sender = get_sender(
     'snakemq',
     ('localhost', 4000)
 )
-"""
 
 
 class BaseView(View):
@@ -49,7 +48,6 @@ class AsyncView(BaseView):
 
     def post(self, request, *args, **kwargs):
         msg = request.POST.get('message')
-        """
+        print('test')
         sender.send(data=msg, topic='send-message')
-        """
         return self.render_to_json_response({'message': msg})
