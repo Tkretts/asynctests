@@ -6,8 +6,9 @@
     <script type="text/javascript" src="static/jquery.js"></script>
     <script type="text/javascript" src="static/sockjs-0.3.min.js"></script>
     <script type="text/javascript" src="static/pushme.js"></script>
+    <script type="text/javascript" src="static/other.js"></script>
     <script type="text/javascript">
-        var baseUrl = 'http://127.0.0.1';
+        var baseUrl = 'http://10.16.2.52';
 
         pushMeConnection.connect(
             baseUrl, 9999, 0
@@ -36,7 +37,7 @@
     </script>
 </head>
 <body>
-    <form method="post" id="send-message-form" action="http://127.0.0.1:8000/sendmsg">
+    <form method="post" id="send-message-form" action="http://10.16.2.52:8001/sendmsg">
         <h3>Send message:</h3>
         <input type="text" name="message"/>
         <input type="button" name="Send" value="Send message"/>
