@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/sockjs-0.3.min.js"></script>
+    <script type="text/javascript" src="static/pushme.js"></script>
+    <script type="text/javascript">
+        var baseUrl = 'http://127.0.0.1';
+
+        pushMeConnection.connect(
+            baseUrl, 9999, 0
+        );
+
+        $(document).ready(function(){
+           var sender = $('form#send-message-form > input[type=button]');
+
+            $.support.cors = true;
+            $.support.cache = false;
+
+            sender.on('click', function(){
+                var form = $(this).parent(),
+                    msg = form.find('input[type=text]').val();
+                if(msg) {
+                    $.ajax({
+                        url: form.prop('action'),
+                        crossDomain: true,
+                        data: {'message': msg},
+                        dataType: 'json',
+                        type: 'post'
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <form method="post" id="send-message-form" action="http://127.0.0.1:8000/sendmsg">
+        <h3>Send message:</h3>
+        <input type="text" name="message"/>
+        <input type="button" name="Send" value="Send message"/>
+    </form>
+</body>
+</html>
